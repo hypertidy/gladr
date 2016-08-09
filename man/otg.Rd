@@ -26,8 +26,6 @@ It is possible to have the same layer name in a folder of files, i.e
 for MapInfo or shapefile, so don't do that.
 }
 \examples{
-dsn <- system.file("extdata", "mapinfo", package = "otg")
-g1 <- otg(dsn)
 
 #dsn <- system.file("extdata", "inlandwaters.gpkg", package = "ggpolypath")
 

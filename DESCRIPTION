@@ -1,12 +1,16 @@
 Package: otg
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Read Only the Geometry
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: person("Michael D.","Sumner", role = c("aut", "cre"), email =
+    "mdsumner@gmail.com")
+Description: Read only the geometry with 'rgdal'.
+License: GPL-3
+Imports:
+    rgdal
+Suggests:
+    covr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
+
