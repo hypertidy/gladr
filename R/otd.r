@@ -1,5 +1,23 @@
-otd <- dont_use_this_egregious_hack_to_read_a_dataframe_with_GDAL <- function(dsn, layer, stringsAsFactors = FALSE) {
-  fids <- ogrFIDs(dsn = dsn, layer = layer)
+#' Metadata
+#'
+#' Just the metadata, for your interpretatation. 
+#' 
+#' "Metadata" here means "feature level" data, the rows in the spatial table. 
+#' @param dsn data source name, i.e. a file path
+#' @param layer named layer, numbered layer, or left otu
+#' @param stringsAsFactors never
+#' @param integer64 policy on these
+#' @param verbose verbosity TRUE or FALSE
+#' @return a data frame, no factors is the default
+#' @export
+#'
+#' @importFrom rgdal ogrFIDs ogrInfo
+#' @examples
+#' inlandwaters <- otd(system.file("extdata", "datasource.gpkg", package = "gladr"))
+#' mixed_poly_lines <- otg(system.file("extdata", "Drawing.mif", package = "gladr"))
+otd <- function(dsn, layer = NULL, stringsAsFactors = FALSE, integer64 = "no.loss", verbose = TRUE) {
+  layer <- choose_a_layer(dsn, layer, verbose)
+  fids <- rgdal::ogrFIDs(dsn = dsn, layer = layer)
   if (attr(fids, "i") != attr(fids, "nf")) {
     retain <- 1:attr(fids, "i")
     afids <- 0:(attr(fids, "nf") - 1)
@@ -8,7 +26,7 @@ otd <- dont_use_this_egregious_hack_to_read_a_dataframe_with_GDAL <- function(ds
                                                  collapse = ", ")))
     fids <- fids[retain]
   }
-  ogr_info <- ogrInfo(dsn = dsn, layer = layer, 
+  ogr_info <- rgdal::ogrInfo(dsn = dsn, layer = layer, 
                       encoding = NULL, use_iconv = FALSE, swapAxisOrder = FALSE, 
                       require_geomType = NULL)
   if (is.null(ogr_info$nListFields))  {
@@ -17,7 +35,6 @@ otd <- dont_use_this_egregious_hack_to_read_a_dataframe_with_GDAL <- function(ds
     nListFields <- ogr_info$nListFields
   }
   
-  integer64 <- "no.loss"
   int64 <- switch(integer64, allow.loss = 1L, warn.loss = 2L, 
                   no.loss = 3L)
   

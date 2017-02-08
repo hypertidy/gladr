@@ -1,6 +1,6 @@
 Package: gladr
 Type: Package
-Title: Use GDAL With R. 
+Title: Use GDAL With R Code
 Version: 0.1.0
 Authors@R: person("Michael D.","Sumner", role = c("aut", "cre"), email =
     "mdsumner@gmail.com")
@@ -9,8 +9,8 @@ License: GPL-3
 Imports:
     rgdal
 Suggests:
-    covr
+    covr,
+    testthat
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1
-
+RoxygenNote: 6.0.1

@@ -4,12 +4,12 @@
 \alias{otg}
 \title{Geometry}
 \usage{
-otg(x, y = NULL, verbose = TRUE)
+otg(dsn, layer = NULL, verbose = TRUE)
 }
 \arguments{
-\item{x}{data source name}
+\item{dsn}{data source name}
 
-\item{y}{layer name, or number, defaults to first layer '1'}
+\item{layer}{layer name, or number, defaults to first layer '1'}
 
 \item{verbose}{report on action if \code{TRUE} and \code{y} for layer not specified, the available layers will be reported}
 }
@@ -27,10 +27,7 @@ for MapInfo or shapefile, so don't do that.
 }
 \examples{
 
-#dsn <- system.file("extdata", "inlandwaters.gpkg", package = "ggpolypath")
 
-mt <- otg:::mtg(otg::otg(system.file("extdata", "inlandwaters.gpkg", package = "ggpolypath")))
-plot(spbabel::sp(mt))
- plot(spbabel::sp(mt)[3, ], asp = "", col = "grey", rule = 'evenodd')
+inlandwaters <- otg(system.file("extdata", "datasource.gpkg", package = "gladr"))
+mixed_poly_lines <- otg(system.file("extdata", "Drawing.mif", package = "gladr"))
 }
-
