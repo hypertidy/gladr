@@ -1,10 +1,10 @@
-Package: otg
+Package: gladr
 Type: Package
-Title: Read Only the Geometry
+Title: Use GDAL With R. 
 Version: 0.1.0
 Authors@R: person("Michael D.","Sumner", role = c("aut", "cre"), email =
     "mdsumner@gmail.com")
-Description: Read only the geometry with 'rgdal'.
+Description: Interfaces to GDAL via 'rgdal'. 
 License: GPL-3
 Imports:
     rgdal
