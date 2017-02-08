@@ -2,7 +2,7 @@
 
 
 cache: packages
-d
+
 language: R
 sudo: required
 before_install: 
