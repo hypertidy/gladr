@@ -5,7 +5,7 @@ listdepth <- function(this,thisdepth = 0L){
     if (!length(this) > 0L ) thisdepth <- thisdepth + 1L
     return(thisdepth)
   }else{
-    return(max(unlist(lapply(this,listdepth,thisdepth=thisdepth + 1L))))    
+    return(max(unlist(lapply(this,listdepth,thisdepth=thisdepth + 1L), use.names = FALSE)))    
   }
 }
 
