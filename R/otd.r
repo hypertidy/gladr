@@ -14,7 +14,7 @@
 #' @importFrom rgdal ogrFIDs ogrInfo
 #' @examples
 #' inlandwaters <- otd(system.file("extdata", "datasource.gpkg", package = "gladr"))
-#' mixed_poly_lines <- otg(system.file("extdata", "Drawing.mif", package = "gladr"))
+#' ##mixed_poly_lines <- otd(system.file("extdata", "Drawing.mif", package = "gladr"))
 otd <- function(dsn, layer = NULL, stringsAsFactors = FALSE, integer64 = "no.loss", verbose = TRUE) {
   layer <- choose_a_layer(dsn, layer, verbose)
   fids <- rgdal::ogrFIDs(dsn = dsn, layer = layer)
@@ -26,6 +26,7 @@ otd <- function(dsn, layer = NULL, stringsAsFactors = FALSE, integer64 = "no.los
                                                  collapse = ", ")))
     fids <- fids[retain]
   }
+  ## we can't have mixed topologies, this will error
   ogr_info <- rgdal::ogrInfo(dsn = dsn, layer = layer, 
                       encoding = NULL, use_iconv = FALSE, swapAxisOrder = FALSE, 
                       require_geomType = NULL)
@@ -50,6 +51,7 @@ otd <- function(dsn, layer = NULL, stringsAsFactors = FALSE, integer64 = "no.los
   dlist <- .Call("ogrDataFrame", as.character(dsn), as.character(layer), 
                  as.integer(fids), iflds, PACKAGE = "rgdal")
   
-  as.data.frame(dlist, stringsAsFactors = stringsAsFactors)
+  dlist
+  #as.data.frame(dlist, stringsAsFactors = stringsAsFactors)
   
 }

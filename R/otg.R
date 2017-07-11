@@ -25,6 +25,14 @@ otg <-  function(dsn, layer = NULL, verbose = TRUE) {
                   PACKAGE="rgdal")
 }
 
+
+setIfNotNamed <- function(x) {
+     abc <- letters[c(24:26, 1:23)]
+     nms <- names(x)
+     if (is.null(nms)) return(setNames(x, abc[seq_along(x)]))
+     setNames(x, abc[set_along(x)])
+   }
+  
 # atomics <- function(x) unlist(lapply(x, is.atomic))
 # ## there's a general name function in gris
 # setIfNotNamed <- function(x) {
