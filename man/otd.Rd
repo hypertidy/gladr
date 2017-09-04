@@ -29,5 +29,5 @@ Just the metadata, for your interpretatation.
 }
 \examples{
 inlandwaters <- otd(system.file("extdata", "datasource.gpkg", package = "gladr"))
-mixed_poly_lines <- otg(system.file("extdata", "Drawing.mif", package = "gladr"))
+##mixed_poly_lines <- otd(system.file("extdata", "Drawing.mif", package = "gladr"))
 }

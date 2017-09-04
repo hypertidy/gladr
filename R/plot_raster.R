@@ -21,6 +21,7 @@
 #' #plot_raster(filename, ext = spex::spex(), add = T, col = rainbow(100))
 #' #maps::map(add = TRUE)
 #' ## library(sf); plot(st_transform(sst_c, 4326), add = T)
+#' ##for (i in sample(seq_len(nrow(wrld_simpl)))) {plot_raster(filename, ext = raster::extent(wrld_simpl[i, ])); plot(wrld_simpl[i, ], add = TRUE)}
 plot_raster <- function(filename, add = FALSE, ext = NULL, cols = NULL) {
   ri <- raster_info(filename)
   xlim <- ri$geotransform[1]
@@ -32,7 +33,7 @@ plot_raster <- function(filename, add = FALSE, ext = NULL, cols = NULL) {
   cols <- if (is.null(cols))  viridis::viridis(99) else  colorRampPalette(cols)(length(brks)-1)
 
   dv <- dev.size("px")
-  rlocal <- raster::raster(extent(xlim, ylim), nrow= ri$dimXY[2], ncol = ri$dimXY[1])
+  rlocal <- raster::raster(raster::extent(xlim, ylim), nrow= ri$dimXY[2], ncol = ri$dimXY[1])
   window <- c(0, 0, ri$dimXY)
   if (!is.null(ext)) {
     ## this index is Y-up
@@ -40,7 +41,7 @@ plot_raster <- function(filename, add = FALSE, ext = NULL, cols = NULL) {
     indexYdown <- c(index[1:2], nrow(rlocal) - index[4:3])
     window <- c(indexYdown[1], indexYdown[3],
                 indexYdown[2] - indexYdown[1], indexYdown[4] - indexYdown[3])
-    rlocal <- crop(rlocal, ext, snap = "out")
+    rlocal <- raster::crop(rlocal, ext, snap = "out")
   }
 
   z <- flip(matrix(raster_io(filename, c(window, dv[1], dv[2])), dv[1]))

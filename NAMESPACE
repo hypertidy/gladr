@@ -2,6 +2,13 @@
 
 export(otd)
 export(otg)
+export(plot_raster)
+export(read_gdal_geometry)
+export(read_gdal_table)
+importFrom(blob,new_blob)
 importFrom(rgdal,ogrFIDs)
 importFrom(rgdal,ogrInfo)
 importFrom(rgdal,ogrListLayers)
+importFrom(vapour,raster_io)
+importFrom(vapour,vapour_read_attributes)
+importFrom(vapour,vapour_read_geometry)
